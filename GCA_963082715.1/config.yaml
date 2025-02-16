@@ -1,0 +1,63 @@
+# dschultz@mbari.org
+#
+# This config file is for the script `GAP_sort_scaffolds_by_hic`
+#  https://github.com/conchoecia/genome_assembly_pipelines
+# To use this config file, copy it to the directory you
+#  want to run the analysis in, then rename it to
+#  config.yaml. Edit the config.yaml file and then run
+#  snakemake --snakfile /path/to/genome_assembly_pipelines/scripts/GAP_hic_map
+
+# This program works by sorting all the little scaffolds in a genome assembly
+#  based on their best location relative to the chromosome-scale scaffolds.
+#  You must specify which are the chromosome-scale scaffolds. They will be
+#  printed out in the fasta file in the order that you specify. The other
+#  scaffolds will be printed out next in the Hi-C sorted order.
+
+# The path to your assembly for which you want a Hi-C map goes here.
+assemblies:
+  GCA963082715.1: "/lisc/scratch/molevo/dts/collaborator/review/202502_beetle/GCA_963082715.1_icHarRubr1.1_genomic.fna"
+
+chromosomes:
+  - OY720448.1
+  - OY720449.1
+  - OY720450.1
+  - OY720451.1
+  - OY720452.1
+  - OY720453.1
+  - OY720454.1
+  - OY720455.1
+  - OY720456.1
+  - OY720457.1
+  - OY720459.1
+  - OY720460.1
+  - OY720461.1
+  - OY720462.1
+  - OY720463.1
+  - OY720464.1
+  - OY720465.1
+  - OY720466.1
+  - OY720458.1
+
+# strength fraction 0-1, supplied as a list
+#  - 0.25 means only insert the scaffolds with the strongest 25% of Hi-C connections
+#  - This works by selections the strongest 25%, then filters more by the minimum
+#    size specified below with min_insert_size.
+#  - The program makes one assembly per strength fraction. 
+strength_fraction: [0.25, 0.5, 0.75]
+
+# only insert scaffolds of this length or longer
+min_insert_size: 10000
+
+# how big the gaps will be in the new assembly
+new_gap_length: 100
+
+# The are the paths to the Hi-C files. You can
+#  have multiple fasta files per library.
+#  It doesn't matter how you do it now, because
+#  all of the libraries are concatenated together.
+libs:
+  HiC-lib1:
+    read1:
+    - /lisc/scratch/molevo/dts/collaborator/review/202502_beetle/ERR11439613_1.fastq.gz
+    read2:
+    - /lisc/scratch/molevo/dts/collaborator/review/202502_beetle/ERR11439613_2.fastq.gz
