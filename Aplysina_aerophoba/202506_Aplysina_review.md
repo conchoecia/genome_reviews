@@ -6,7 +6,7 @@ Postdoctoral Scholar
 University of Vienna
 **Date**: June 30th, 2025
 
-📄 **Online Version available at**:
+📄 **Online Version available here**: https://github.com/conchoecia/genome_reviews/blob/main/Aplysina_aerophoba/202506_Aplysina_review.md
 
 ---
 
